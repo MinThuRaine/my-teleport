@@ -1,0 +1,6 @@
+CREATE DATABASE IF NOT EXISTS `teleport_client`;
+CREATE DATABASE IF NOT EXISTS `teleport_agent`;
+CREATE DATABASE IF NOT EXISTS `teleport_order`;
+
+
+

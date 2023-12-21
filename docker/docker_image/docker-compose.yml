@@ -1,0 +1,46 @@
+
+version: '3.7'
+services:
+  mysqldb:
+    image: mysql:8.1.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: mysql
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql-dump:/docker-entrypoint-initdb.d
+  client-service:
+    image: com.my.teleport.system/client.service:1.0-SNAPSHOT
+    ports:
+      - 8282:8282
+    environment:
+      SPRING_PROFILES_ACTIVE: production
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/teleport_client?allowPublicKeyRetrieval=true&autoReconnect=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: mysql
+    depends_on:
+      - mysqldb
+  agent-service:
+    image: com.my.teleport.system/agent.service:1.0-SNAPSHOT
+    ports:
+      - 8181:8181
+    environment:
+      SPRING_PROFILES_ACTIVE: production
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/teleport_agent?allowPublicKeyRetrieval=true&autoReconnect=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: mysql
+    depends_on:
+      - mysqldb
+  taskorder-service:
+    image: com.my.teleport.system/order.service:1.0-SNAPSHOT
+    ports:
+      - 8383:8383
+    environment:
+      SPRING_PROFILES_ACTIVE: production
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/teleport_order?allowPublicKeyRetrieval=true&autoReconnect=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: mysql
+    depends_on:
+      - mysqldb
+    

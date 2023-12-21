@@ -1,0 +1,27 @@
+{
+    "namespace": "com.my.teleport.system.kafka.agent.avro.model",
+    "type": "record",
+    "name": "AgentCreatedAvroModel",
+    "fields": [
+        {
+            "name": "id",
+            "type": {
+                "type": "string",
+                "logicalType": "uuid"
+            }
+        },
+        {
+            "name": "agentId",
+            "type": {
+                "type": "string",
+                "logicalType": "uuid"
+            }
+        },
+        {
+            "name": "name",
+            "type": {
+                "type": "string"
+            }
+        }
+    ]
+}

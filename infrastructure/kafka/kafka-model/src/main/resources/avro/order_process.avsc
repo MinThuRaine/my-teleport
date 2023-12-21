@@ -1,0 +1,36 @@
+{
+    "namespace": "com.my.teleport.system.kafka.order.avro.model",
+    "type": "record",
+    "name": "OrderProcessingAvroModel",
+    "fields": [
+         {
+                "name": "id",
+                "type": {
+                    "type": "string",
+                    "logicalType": "uuid"
+                }
+         },
+        {
+            "name": "orderId",
+            "type": {
+                "type": "string",
+                "logicalType": "uuid"
+            }
+        },
+        {
+            "name": "clientId",
+            "type": {
+                "type": "string",
+                "logicalType": "uuid"
+            }
+        },
+        {
+                 "name": "createdAt",
+                 "type": {
+                      "type": "long",
+                      "logicalType": "timestamp-millis"
+                 }
+        }
+
+    ]
+}
